@@ -8,12 +8,7 @@ const customTheme = {
     ...theme.colors,
     ...customColors,
   },
-  // fonts: {
-  //   body: "Muli",
-  //   heading: "Muli",
-  //   mono: "Muli",
-  // },
-  
+
 }
 
 export default customTheme
