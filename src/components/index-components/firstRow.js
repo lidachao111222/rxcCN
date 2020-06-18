@@ -4,10 +4,10 @@ import {
   Flex,
   Heading,
   Box,
+  PseudoBox,
   Text,
   Avatar,
   Stack,
-  Divider,
 } from "@chakra-ui/core"
 import Img from "gatsby-image"
 
@@ -35,7 +35,7 @@ const FirstRow = () => {
                 }
               }
             }
-            autoImg {
+            authorImg {
               publicURL
             }
           }
@@ -46,7 +46,7 @@ const FirstRow = () => {
 
   let a = data.allMdx.nodes
 
-  let b = a.map(v => v.frontmatter.autoImg.publicURL)
+  let b = a.map(v => v.frontmatter.authorImg.publicURL)
 
   return (
     <Flex
@@ -55,173 +55,333 @@ const FirstRow = () => {
       maxW={1080}
       mx="auto"
       px={[0, 0, 0, "30px"]}
-      pt={["20px", "20px", "50px", "40px"]}
+      pt={["20px", "20px", "50px", "60px"]}
+      mb="5vw"
     >
       {/* 第一大栏目 */}
-      <Flex
-        w={["100%", "50%", "50%", "100%"]}
+      <PseudoBox
+        display="flex"
         flexDir={["column", "column", "column", "row"]}
-        paddingBottom="40px"
-        px="20px"
-        borderBottom="1px solid #ccc"
+        paddingBottom="3vw"
+        w={["100%", "45%", "45%", "97.5%"]}
+        borderBottom="1px solid #eee"
+        mx="auto"
+        mb="3vw"
+        _hover={{ color: " #6873e5" }}
       >
-        <Box w="100%" maxW={["400px", "400px", "620px", "620px"]}>
+        <PseudoBox
+          w="100%"
+          maxW={["400px", "400px", "620px", "620px"]}
+          mx="auto"
+          boxShadow="-1.5em 1em 4em #ccc, 0em 0 1em #ccc;"
+          position="relative"
+          _hover={{
+            boxShadow: "-1em 0.5em 10em #ccc,  0em 0 2em #ccc;",
+            top: "-1px",
+            transition: "all 1000ms ease 0s",
+          }}
+        >
           <Img fluid={a[0].frontmatter.img.childImageSharp.fluid} />
-        </Box>
+        </PseudoBox>
         <Box
           w={["100%", "100%", "100%", "40%"]}
           my="auto"
-          pl={[0, 0, 0, "40px"]}
+          px={["5vw", 0, 0, 0]}
+          ml={[0, 0, 0, "40px"]}
         >
-          <Heading
+          <PseudoBox
+            _hover={{ color: " #6873e5" }}
             mb="12px"
-            fontSize="2xl"
+            fontWeight="900"
+            fontSize="2rem"
+            lineHeight="2.5rem"
+            fontFamily="NotoSansSC-Medium "
             mt={["1.2rem", "1.2rem", "1.2rem", 0]}
           >
             {a.map(v => v.frontmatter.title)}
-          </Heading>
-          <Text mb="1.5em" fontSize="1rem" lineHeight="1.5em">
+          </PseudoBox>
+          <Text
+            mb="1.5em"
+            fontSize="1.1rem"
+            lineHeight="1.5em"
+            color="#999"
+            letterSpacing="0.025vw"
+            fontFamily="NotoSansSC-Medium !important"
+          >
             {a.map(v => v.frontmatter.description)}
           </Text>
           <Stack isInline>
             {" "}
             <Avatar w="32px" h="32px" name="author" src={b[0]} />
-            <Flex flexDir="column">
-              <Text fontSize="0.5px">{a.map(v => v.frontmatter.author)}</Text>
-              <Text fontSize="0.5px">{a.map(v => v.frontmatter.date)}</Text>
+            <Flex flexDir="column" ml="0.5vw">
+              <Text fontSize="0.5px" color="#6873e5" fontWeight="700">
+                {a.map(v => v.frontmatter.author)}
+              </Text>
+              <Text fontSize="0.5px" color="#aaa" fontWeight="700">
+                {a.map(v => v.frontmatter.date)}
+              </Text>
             </Flex>
           </Stack>
         </Box>
-      </Flex>
+      </PseudoBox>
 
       {/* 第二大栏目 */}
-      <Box w={["100%", "50%", "50%", "33.3%"]} px="20px">
-        
+      <PseudoBox
+        w={["100%", "45%", "45%", "31%"]}
+        borderBottom="1px solid #eee"
+        mx="auto"
+        mb="3vw"
+        paddingBottom="3vw"
+        _hover={{ color: " #6873e5" }}
+      >
         {/* 图片 */}
-        <Box w="100%" maxW={["400px", "400px", "620px", "620px"]}>
+        <PseudoBox w="100%" maxW={["400px", "400px", "620px", "620px"]} mx="auto"    boxShadow="-1.5em 1em 4em #ccc, 0em 0 1em #ccc;"
+            position="relative"
+            _hover={{
+              boxShadow: "-1em 0.5em 10em #ccc,  0em 0 2em #ccc;",
+              top: "-1px",
+              transition: "all 1000ms ease 0s",
+            }}>
           <Img fluid={a[0].frontmatter.img.childImageSharp.fluid} />
-        </Box>
+        </PseudoBox>
         {/* 描述 */}
-        <Box>
-          <Heading mb="12px" fontSize="2xl" mt={"1.2rem"}>
+        <Box px={["5vw", 0, 0, 0]}>
+          <PseudoBox
+            _hover={{ color: " #6873e5" }}
+            mb="12px"
+            fontWeight="900"
+            fontSize={["2rem", "2rem", "2rem", "1.5rem"]}
+            lineHeight={["2.5rem", "2.5rem", "2.5rem", "2rem"]}
+            mt={["1.2rem", "1.2rem", "1.2rem", "1.5rem"]}
+            fontFamily="NotoSansSC-Medium"
+          >
             {a.map(v => v.frontmatter.title)}
-          </Heading>
-          <Text mb="1em" fontSize="1rem" lineHeight="1.5em">
+          </PseudoBox>
+          <Text
+                mb="1.5em"
+                fontSize={["1.1rem","1.1rem","1.1rem","1rem"]}
+                lineHeight="1.5em"
+                color="#999"
+                letterSpacing="0.025vw"
+                fontFamily="NotoSansSC-Medium !important"
+          >
             {a.map(v => v.frontmatter.description)}
           </Text>
           <Stack isInline>
             {" "}
             <Avatar w="32px" h="32px" name="author" src={b[0]} />
-            <Flex flexDir="column">
-              <Text fontSize="0.5px">{a.map(v => v.frontmatter.author)}</Text>
-              <Text fontSize="0.5px">{a.map(v => v.frontmatter.date)}</Text>
+            <Flex flexDir="column" ml="0.5vw">
+              <Text fontSize="0.5px" color="#6873e5" fontWeight="700">
+                {a.map(v => v.frontmatter.author)}
+              </Text>
+              <Text fontSize="0.5px" color="#aaa" fontWeight="700">
+                {a.map(v => v.frontmatter.date)}
+              </Text>
             </Flex>
           </Stack>
         </Box>
-        
-      </Box>
+      </PseudoBox>
       {/* 第3大栏目 */}
-      <Box w={["100%", "50%", "50%", "33.3%"]} px="20px">
+      <PseudoBox
+        w={["100%", "45%", "45%", "31%"]}
+        borderBottom="1px solid #eee"
+        mx="auto"
+        mb="3vw"
+        paddingBottom="3vw"
+        _hover={{ color: " #6873e5" }}
+      >
         {/* 图片 */}
-        <Box w="100%" maxW={["400px", "400px", "620px", "620px"]}>
+        <PseudoBox w="100%" maxW={["400px", "400px", "620px", "620px"]} mx="auto"    boxShadow="-1.5em 1em 4em #ccc, 0em 0 1em #ccc;"
+            position="relative"
+            _hover={{
+              boxShadow: "-1em 0.5em 10em #ccc,  0em 0 2em #ccc;",
+              top: "-1px",
+              transition: "all 1000ms ease 0s",
+            }}>
           <Img fluid={a[0].frontmatter.img.childImageSharp.fluid} />
-        </Box>
+        </PseudoBox>
         {/* 描述 */}
-        <Box>
-          <Heading mb="12px" fontSize="2xl" mt={"1.2rem"}>
+        <Box px={["5vw", 0, 0, 0]}>
+          <PseudoBox
+            _hover={{ color: " #6873e5" }}
+            mb="12px"
+            fontWeight="900"
+            fontSize={["2rem", "2rem", "2rem", "1.5rem"]}
+            lineHeight={["2.5rem", "2.5rem", "2.5rem", "2rem"]}
+            mt={["1.2rem", "1.2rem", "1.2rem", "1.5rem"]}
+            fontFamily="NotoSansSC-Medium"
+          >
             {a.map(v => v.frontmatter.title)}
-          </Heading>
-          <Text mb="1em" fontSize="1rem" lineHeight="1.5em">
+          </PseudoBox>
+          <Text
+                mb="1.5em"
+                fontSize={["1.1rem","1.1rem","1.1rem","1rem"]}
+                lineHeight="1.5em"
+                color="#999"
+                letterSpacing="0.025vw"
+                fontFamily="NotoSansSC-Medium !important"
+          >
             {a.map(v => v.frontmatter.description)}
           </Text>
           <Stack isInline>
             {" "}
             <Avatar w="32px" h="32px" name="author" src={b[0]} />
-            <Flex flexDir="column">
-              <Text fontSize="0.5px">{a.map(v => v.frontmatter.author)}</Text>
-              <Text fontSize="0.5px">{a.map(v => v.frontmatter.date)}</Text>
+            <Flex flexDir="column" ml="0.5vw">
+              <Text fontSize="0.5px" color="#6873e5" fontWeight="700">
+                {a.map(v => v.frontmatter.author)}
+              </Text>
+              <Text fontSize="0.5px" color="#aaa" fontWeight="700">
+                {a.map(v => v.frontmatter.date)}
+              </Text>
             </Flex>
           </Stack>
         </Box>
-      </Box>
+      </PseudoBox>
       {/* 第4大栏目 */}
-      <Box w={["100%", "50%", "50%", "33.3%"]} px="20px">
+      <PseudoBox
+        w={["100%", "45%", "45%", "31%"]}
+        borderBottom="1px solid #eee"
+        mx="auto"
+        mb="3vw"
+        paddingBottom="3vw"
+        _hover={{ color: " #6873e5" }}
+      >
         {/* 图片 */}
-        <Box w="100%" maxW={["400px", "400px", "620px", "620px"]}>
+        <PseudoBox w="100%" maxW={["400px", "400px", "620px", "620px"]} mx="auto"    boxShadow="-1.5em 1em 4em #ccc, 0em 0 1em #ccc;"
+            position="relative"
+            _hover={{
+              boxShadow: "-1em 0.5em 10em #ccc,  0em 0 2em #ccc;",
+              top: "-1px",
+              transition: "all 1000ms ease 0s",
+            }}>
           <Img fluid={a[0].frontmatter.img.childImageSharp.fluid} />
-        </Box>
+        </PseudoBox>
         {/* 描述 */}
-        <Box>
-          <Heading mb="12px" fontSize="2xl" mt={"1.2rem"}>
+        <Box px={["5vw", 0, 0, 0]}>
+          <PseudoBox
+            _hover={{ color: " #6873e5" }}
+            mb="12px"
+            fontWeight="900"
+            fontSize={["2rem", "2rem", "2rem", "1.5rem"]}
+            lineHeight={["2.5rem", "2.5rem", "2.5rem", "2rem"]}
+            mt={["1.2rem", "1.2rem", "1.2rem", "1.5rem"]}
+            fontFamily="NotoSansSC-Medium"
+          >
             {a.map(v => v.frontmatter.title)}
-          </Heading>
-          <Text mb="1em" fontSize="1rem" lineHeight="1.5em">
+          </PseudoBox>
+          <Text
+                mb="1.5em"
+                fontSize={["1.1rem","1.1rem","1.1rem","1rem"]}
+                lineHeight="1.5em"
+                color="#999"
+                letterSpacing="0.025vw"
+                fontFamily="NotoSansSC-Medium !important"
+          >
             {a.map(v => v.frontmatter.description)}
           </Text>
           <Stack isInline>
             {" "}
             <Avatar w="32px" h="32px" name="author" src={b[0]} />
-            <Flex flexDir="column">
-              <Text fontSize="0.5px">{a.map(v => v.frontmatter.author)}</Text>
-              <Text fontSize="0.5px">{a.map(v => v.frontmatter.date)}</Text>
+            <Flex flexDir="column" ml="0.5vw">
+              <Text fontSize="0.5px" color="#6873e5" fontWeight="700">
+                {a.map(v => v.frontmatter.author)}
+              </Text>
+              <Text fontSize="0.5px" color="#aaa" fontWeight="700">
+                {a.map(v => v.frontmatter.date)}
+              </Text>
             </Flex>
           </Stack>
         </Box>
-      </Box>
+      </PseudoBox>
 
       {/* 第5大栏目 */}
-      <Box w={["100%", "50%", "50%", "50%"]} px="20px">
+      <PseudoBox
+        w={["100%", "44.6%", "44.6%", "47.6%"]}
+        mx="auto"
+        borderBottom="1px solid #eee"
+        mb="3vw"
+        paddingBottom="3vw"
+        _hover={{ color: " #6873e5" }}
+      >
         {" "}
         {/* 图片 */}
-        <Box w="100%" maxW={["400px", "400px", "500px", "500px"]}>
+        <PseudoBox w="100%" maxW={["400px", "400px", "500px", "500px"]} mx="auto"   _hover={{ color: " #6873e5" }}
+        boxShadow="-1.5em 1em 4em #ccc, 0em 0 1em #ccc;"
+        position="relative"
+        _hover={{
+          boxShadow: "-1em 0.5em 10em #ccc,  0em 0 2em #ccc;",
+          top: "-1px",
+          transition: "all 1000ms ease 0s",
+        }}>
           <Img fluid={a[0].frontmatter.img.childImageSharp.fluid} />
-        </Box>
+        </PseudoBox>
         {/* 描述 */}
-        <Box>
+        <Box px={["5vw", 0, 0, 0]}>
           <Heading mb="12px" fontSize="2xl" mt={"1.2rem"}>
             {a.map(v => v.frontmatter.title)}
           </Heading>
-          <Text mb="1em" fontSize="1rem" lineHeight="1.5em">
+          <Text     mb="1.5em"
+                fontSize="1.1rem"
+                lineHeight="1.5em"
+                color="#999"
+                letterSpacing="0.025vw"
+                fontFamily="NotoSansSC-Medium !important">
             {a.map(v => v.frontmatter.description)}
           </Text>
-          <Stack isInline>
+          <Stack isInline mb="1vw">
             {" "}
             <Avatar w="32px" h="32px" name="author" src={b[0]} />
             <Flex flexDir="column">
-              <Text fontSize="0.5px">{a.map(v => v.frontmatter.author)}</Text>
-              <Text fontSize="0.5px">{a.map(v => v.frontmatter.date)}</Text>
+              <Text fontSize="0.5px" color="#6873e5" fontWeight="700">{a.map(v => v.frontmatter.author)}</Text>
+              <Text fontSize="0.5px" color="#aaa" fontWeight="700">{a.map(v => v.frontmatter.date)}</Text>
             </Flex>
           </Stack>
         </Box>
-      </Box>
+      </PseudoBox>
       {/* 第6大栏目 */}
-      <Box w={["100%", "50%", "50%", "50%"]} px="20px">
+      <PseudoBox
+        w={["100%", "44.6%", "44.6%", "47.6%"]}
+        mx="auto"
+        borderBottom="1px solid #eee"
+        mb="3vw"
+        paddingBottom="3vw"
+        _hover={{ color: " #6873e5" }}
+      >
         {" "}
         {/* 图片 */}
-        <Box w="100%" maxW={["400px", "400px", "500px", "500px"]}>
-          <Img
-            style={{ height: "20%" }}
-            fluid={a[0].frontmatter.img.childImageSharp.fluid}
-          />
-        </Box>
+        <PseudoBox w="100%" maxW={["400px", "400px", "500px", "500px"]} mx="auto"   _hover={{ color: " #6873e5" }}
+        boxShadow="-1.5em 1em 4em #ccc, 0em 0 1em #ccc;"
+        position="relative"
+        _hover={{
+          boxShadow: "-1em 0.5em 10em #ccc,  0em 0 2em #ccc;",
+          top: "-1px",
+          transition: "all 1000ms ease 0s",
+        }}>
+          <Img fluid={a[0].frontmatter.img.childImageSharp.fluid} />
+        </PseudoBox>
         {/* 描述 */}
-        <Box>
+        <Box px={["5vw", 0, 0, 0]}>
           <Heading mb="12px" fontSize="2xl" mt={"1.2rem"}>
             {a.map(v => v.frontmatter.title)}
           </Heading>
-          <Text mb="1em" fontSize="1rem" lineHeight="1.5em">
+          <Text     mb="1.5em"
+                fontSize="1.1rem"
+                lineHeight="1.5em"
+                color="#999"
+                letterSpacing="0.025vw"
+                fontFamily="NotoSansSC-Medium !important">
             {a.map(v => v.frontmatter.description)}
           </Text>
-          <Stack isInline>
+          <Stack isInline mb="1vw">
             {" "}
             <Avatar w="32px" h="32px" name="author" src={b[0]} />
             <Flex flexDir="column">
-              <Text fontSize="0.5px">{a.map(v => v.frontmatter.author)}</Text>
-              <Text fontSize="0.5px">{a.map(v => v.frontmatter.date)}</Text>
+              <Text fontSize="0.5px" color="#6873e5" fontWeight="700">{a.map(v => v.frontmatter.author)}</Text>
+              <Text fontSize="0.5px" color="#aaa" fontWeight="700">{a.map(v => v.frontmatter.date)}</Text>
             </Flex>
           </Stack>
         </Box>
-      </Box>
+      </PseudoBox>
     </Flex>
   )
 }

@@ -9,8 +9,9 @@ const Layout = ({children}) => {
 
   return (
     <Flex minH='100vh' flexDirection='column'>
-      <Header  />
+       <Header  /> 
       <Box flex={1}>{children}</Box>
+      {console.log(window.location.pathname)}
       <Footer/>
     </Flex>
   )

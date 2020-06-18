@@ -1,15 +1,64 @@
-import React from 'react'
-import { Flex,Text,Box } from "@chakra-ui/core"
-import { FiTwitter } from "react-icons/fi";
+import React from "react"
+import {
+  AiOutlineWeibo,
+  AiOutlineTwitter,
+  AiOutlineWechat,
+} from "react-icons/ai"
+import { Flex, Text } from "@chakra-ui/core"
+
 const Footer = () => {
-    return (
-        <Box backgroundColor="rgb(110, 30, 165)" color="hsla(0,0%,100%,.7)" px="30px">
-        <Flex justifyContent="space-between" w="100%" maxW={1080} mx="auto" pb="60px" pt="20px" >
-            <Text>RedicalxChange © 2020 </Text>
-            <Text><FiTwitter/></Text>
-        </Flex>
-        </Box>
-    )
+  return (
+    <Flex
+      backgroundColor="#eeeffe"
+      justifyContent="center"
+      height={110}
+      flexDirection="column"
+      alignItems="center"
+    >
+      <Text
+        color="#555"
+        fontWeight="bold"
+        fontSize="16px"
+        fontFamily="Muli-ExtraBold"
+        letterSpacing="5px"
+      >
+        基进变革
+      </Text>
+      <Flex mt={2}>
+        <a
+          href="https://weibo.com/RadicalXChange?is_all=1"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <AiOutlineWeibo
+            style={{
+              fontSize: "20px",
+              marginRight: "10px",
+              color: "#555",
+            }}
+          />
+        </a>
+
+        <a
+          href="https://twitter.com/rxcchina"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <AiOutlineTwitter style={{ fontSize: "20px", color: "#555" }} />
+        </a>
+
+        <a
+          href="https://open.weixin.qq.com/qr/code?username=radxchange"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+        <AiOutlineWechat
+          style={{ fontSize: "20px", marginLeft: "10px", color: "#555" }}
+        />
+        </a>
+      </Flex>
+    </Flex>
+  )
 }
 
 export default Footer

@@ -2,8 +2,10 @@ import { Link } from "gatsby"
 import React, { useState } from "react"
 import { Flex, Box, Icon, Text, useColorMode, Heading } from "@chakra-ui/core"
 
+
+
 const Header = () => {
-  const [navList, setnavList] = useState(["新闻", "研究", "关于"])
+  const [navList, setnavList] = useState(["新闻", "研究", "理念", "关于"])
   const [infoList, setinfoList] = useState([
     "经济",
     "社会",
@@ -13,81 +15,114 @@ const Header = () => {
   ])
   const { colorMode, toggleColorMode } = useColorMode()
 
+  const [page, setnavPage] = useState(["news", "research", "concept", "about"])
+
+ 
   return (
     // 外部背景颜色
     <Box
-      background="linear-gradient(165deg, rgb(121, 5, 171) 50%, rgb(92, 16, 123) 0%)"
+      // background="linear-gradient(162deg, rgb(121, 5, 171) 50%, rgb(92, 16, 123) 0%)"
+      background= {window.location.pathname === '/' ? "linear-gradient(162deg, rgb(121, 5, 171) 50%, rgb(92, 16, 123) 0%)" :"linear-gradient(165deg, rgb(121, 5, 171) 77%, rgb(92, 16, 123) 0%)"} 
       h="100%"
-      minHeight="355px"
     >
+     
       {/* 第一栏 */}
       <Flex
         w="100%"
         maxW={1080}
         mx="auto"
-        color="hsla(0,0%,100%,.7)"
-        padding="30px 10px 80px 10px"
         justifyContent="space-between"
+        padding="5px 30px 5px 30px"
+        color="white"
       >
         {/* 左侧navbar */}
         <Flex>
           <Text
-            fontSize="25px"
-            fontWeigh={900}
-            pr={5}
-            borderRight={[0,0,"1px solid #ccc","1px solid #ccc"]}
+            fontSize="20px"
+            fontWeigh={300}
+            pr={8}
+            h="62%"
+            mt="0.6vw"
+            borderRight={[0, 0, "1px solid #ccc", "1px solid #ccc"]}
             cursor="pointer"
+            fontFamily="LeagueSpartan !important"
           >
-            RadicalxChange
+            <Link to="/">RadicalxChange</Link>
           </Text>
-          <Box display={["none","none","inline","inline"]}>
-          <ul>
-            {/* <li style={{display:'inline'}}>新闻</li> */}
-            {navList.map((val,index) => (
-              <li key={index} style={{ display: "inline", cursor: "pointer" }}>
-                {" "}
-                <Text display="inline-block" ml={6} lineHeight="37px">
-                  {val}
-                </Text>{" "}
-              </li>
-            ))}
-          </ul>
+          <Box display={["none", "none", "inline", "inline"]}>
+            <ul>
+              {/* <li style={{display:'inline'}}>新闻</li> */}
+              {navList.map((val, index) => (
+                <li
+                  key={index}
+                  style={{ display: "inline", cursor: "pointer" }}
+                >
+                  <Text display="inline-block" ml={8}  lineHeight="44px" color="#fff">
+                    <Link style={{fontSize: '14px', paddingBottom:'0.5vh', borderBottom:(window.location.pathname.substr(1) == page[index]) ? "1px solid white" :"none"}} to={page[index]} >{val}</Link>
+                  </Text>{" "}
+                </li>
+              ))}
+            </ul>
           </Box>
         </Flex>
         {/* 右侧icon */}
-        <Box lineHeight="37px">
+       
+        <Box lineHeight="30px">
           {colorMode == "light" ? (
-            <Icon name="sun" fontSize="20px" onClick={toggleColorMode} />
+          
+            <Icon   name="sun" fontSize="20px" onClick={toggleColorMode} />
           ) : (
-            <Icon name="moon" fontSize="20px" onClick={toggleColorMode} />
+
+            <Icon  name="moon" fontSize="20px" onClick={toggleColorMode} />
+
           )}
         </Box>
+
       </Flex>
       {/* 第二栏 */}
-      <Box
-        w="100%"
-        maxW={1080}
-        mx="auto"
-        color="white"
-        padding="0px 10px 80px 10px"
-      >
-        <Heading fontSize={50} textAlign="center" fontFamily="Pirou">
-          RXC
-        </Heading>
-        <ul style={{ listStyle: "none", textAlign: "center" }}>
-          {infoList.map((val, index) => (
-            <li key={index} style={{ display: "inline" }}>
-              <Text display="inline-block">
-                {index === 0 ? null : <span style={{ padding: "8px" }}>•</span>}
-                {val}
-              </Text>
-            </li>
-          ))}
-        </ul>
-      </Box>
-      <Box>
-        <Heading pr={2}  color="rgba(238,239,254,0.3)"  fontSize={30} textAlign="right"  fontFamily="LeagueSpartan">RadicalxChange</Heading>
-      </Box>
+      {
+        window.location.pathname === "/" ? (
+          <>
+            {" "}
+            <Box
+              w="100%"
+              maxW={1080}
+              mx="auto"
+              color="white"
+              padding="0px 10px 30px 10px"
+              marginTop="10vh"
+              marginBottom="1vh"
+            >
+              <Heading fontSize={60} textAlign="center" fontFamily="Pirou">
+                RXC
+              </Heading>
+              <ul style={{ listStyle: "none", textAlign: "center" }}>
+                {infoList.map((val, index) => (
+                  <li key={index} style={{ display: "inline" }}>
+                    <Text display="inline-block" color="#fff">
+                      {index === 0 ? null : (
+                        <span style={{ padding: "8px" }}>•</span>
+                      )}
+                      {val}
+                    </Text>
+                  </li>
+                ))}
+              </ul>
+            </Box>
+            <Box marginBottom="1vh">
+              <Heading
+                pr={10}
+                color="rgba(238,239,254,0.1)"
+                fontSize={["1.5rem","2rem","2.2rem","3.2rem"]}
+                textAlign="right"
+                fontFamily="LeagueSpartan"
+              >
+                RadicalxChange
+              </Heading>
+            </Box>{" "}
+          </>
+        ) : null
+      }
     </Box>
   )
 }
