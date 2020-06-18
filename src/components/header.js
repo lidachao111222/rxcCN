@@ -3,8 +3,10 @@ import React, { useState } from "react"
 import { Flex, Box, Icon, Text, useColorMode, Heading } from "@chakra-ui/core"
 
 
-
 const Header = () => {
+
+  const windowGlobal = typeof window !== 'undefined' && window.location.pathname
+
   const [navList, setnavList] = useState(["新闻", "研究", "理念", "关于"])
   const [infoList, setinfoList] = useState([
     "经济",
@@ -17,15 +19,17 @@ const Header = () => {
 
   const [page, setnavPage] = useState(["news", "research", "concept", "about"])
 
+
  
   return (
     // 外部背景颜色
     <Box
       // background="linear-gradient(162deg, rgb(121, 5, 171) 50%, rgb(92, 16, 123) 0%)"
-      background= {window.location.pathname === '/' ? "linear-gradient(162deg, rgb(121, 5, 171) 50%, rgb(92, 16, 123) 0%)" :"linear-gradient(165deg, rgb(121, 5, 171) 77%, rgb(92, 16, 123) 0%)"} 
+      background= {windowGlobal === '/' ? "linear-gradient(162deg, rgb(121, 5, 171) 50%, rgb(92, 16, 123) 0%)" :"linear-gradient(165deg, rgb(121, 5, 171) 77%, rgb(92, 16, 123) 0%)"} 
       h="100%"
     >
-     
+
+
       {/* 第一栏 */}
       <Flex
         w="100%"
@@ -58,7 +62,7 @@ const Header = () => {
                   style={{ display: "inline", cursor: "pointer" }}
                 >
                   <Text display="inline-block" ml={8}  lineHeight="44px" color="#fff">
-                    <Link style={{fontSize: '14px', paddingBottom:'0.5vh', borderBottom:(window.location.pathname.substr(1) == page[index]) ? "1px solid white" :"none"}} to={page[index]} >{val}</Link>
+                    <Link style={{fontSize: '14px', paddingBottom:'0.5vh', borderBottom:(windowGlobal == "/"+page[index]) ? "1px solid white" :"none"}} to={page[index]} >{val}</Link>
                   </Text>{" "}
                 </li>
               ))}
@@ -81,7 +85,7 @@ const Header = () => {
       </Flex>
       {/* 第二栏 */}
       {
-        window.location.pathname === "/" ? (
+        windowGlobal=== "/" ? (
           <>
             {" "}
             <Box

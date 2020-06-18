@@ -5,7 +5,7 @@ import FirstRow from "../components/index-components/firstRow"
 
 
 const IndexPage = () => (
-  <Layout>
+  <Layout >
     <SEO title="首页" />
     <FirstRow/>
   </Layout>
